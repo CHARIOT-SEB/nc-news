@@ -1,12 +1,22 @@
-const BreakingNews = ({ articles }) => {
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+
+const BreakingNews = ({ articles, loading }) => {
+  const [id, setId] = useState('');
+
+  // if (loading) {
+  //   return <p>Loading...</p>;
+  // }
+
   const dateFormatter = (dates) => {
-    let x = new Date(dates);
-    let formattedDate = x.toGMTString();
+    const x = new Date(dates);
+    const formattedDate = x.toLocaleString();
     return formattedDate;
   };
 
-
-  // limit amount of posts displayed (pagination??)
+  const idClicked = () => {
+    // howwww
+  };
 
   return (
     <div>
@@ -14,13 +24,21 @@ const BreakingNews = ({ articles }) => {
       <h3>Our most recent stories below...</h3>
       <ul>
         {articles.map((article) => (
-          <li key={article.article_id}>
-            {article.title} 
-            <br />
-            {dateFormatter(article.created_at)}
-            <br />
-            <br />
-          </li>
+          <Link
+            key={article.article_id}
+            to={`/article/${article.article_id}`}
+            onClick={idClicked}
+          >
+            <li>
+              {article.title}
+              <br />
+              {article.topic}
+              <br />
+              {dateFormatter(article.created_at)}
+              <br />
+              <br />
+            </li>
+          </Link>
         ))}
       </ul>
     </div>

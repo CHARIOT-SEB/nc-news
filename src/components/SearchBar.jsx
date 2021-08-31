@@ -1,8 +1,8 @@
 import { useState } from 'react';
+
 const SearchBar = ({ searchTerm, setSearchTerm }) => {
   const [newSearchTerm, setNewSearchTerm] = useState('');
 
- 
   const handleInput = (event) => {
     const userInput = event.target.value;
     console.log(userInput);
