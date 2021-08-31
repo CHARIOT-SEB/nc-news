@@ -4,9 +4,13 @@ import { Link } from 'react-router-dom';
 const BreakingNews = ({ articles, loading }) => {
   const [id, setId] = useState('');
 
-  // if (loading) {
-  //   return <p>Loading...</p>;
-  // }
+   if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (articles.length === 0) {
+    return <p className="noArticles">no articles found</p>;
+  }
 
   const dateFormatter = (dates) => {
     const x = new Date(dates);

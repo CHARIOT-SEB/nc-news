@@ -17,15 +17,17 @@ function App() {
   const [articlesPerPage, setArticlePerPage] = useState(4);
 
   useEffect(() => {
+    setLoading(true);
     fetch(`https://northcoders-news.herokuapp.com/api/articles`)
       .then((response) => response.json())
       .then((body) => {
         let array = body.articles;
         setArticles(array);
+        setLoading(false);
       });
   }, []);
 
-// Get current articles 
+  // Get current articles
   const indexOfLastArticle = currentPage * articlesPerPage;
   const indexOfFirstArticle = indexOfLastArticle - articlesPerPage;
   const currentArticles = articles.slice(
@@ -49,7 +51,7 @@ function App() {
           <Account />
         </Route>
         <Route exact path="/article/:id">
-          <ReadArticle articles={articles}/>
+          <ReadArticle articles={articles} />
         </Route>
       </Switch>
     </div>
