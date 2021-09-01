@@ -45,13 +45,13 @@ function App() {
           <BreakingNews articles={currentArticles} loading={loading} />
         </Route>
         <Route exact path="/topics">
-          <Topics />
+          <Topics loading={loading} setLoading={setLoading} />
         </Route>
         <Route exact path="/account">
           <Account />
         </Route>
         <Route exact path="/article/:id">
-          <ReadArticle articles={articles} />
+          <ReadArticle />
         </Route>
       </Switch>
     </div>

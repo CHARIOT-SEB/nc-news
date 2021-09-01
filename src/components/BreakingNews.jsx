@@ -1,10 +1,7 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const BreakingNews = ({ articles, loading }) => {
-  const [id, setId] = useState('');
-
-   if (loading) {
+  if (loading) {
     return <p>Loading...</p>;
   }
 
