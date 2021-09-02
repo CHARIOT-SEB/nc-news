@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
-const Topics = ({ setLoading }) => {
+const Topics = ({ articles, setLoading }) => {
   const [topics, setTopics] = useState([]);
+  const [topic, setTopic] = useState('');
+  const [articlesByTopic, setArticlesByTopics] = useState([]);
+  const { slug } = useParams();
 
   useEffect(() => {
     setLoading(true);
@@ -14,18 +17,29 @@ const Topics = ({ setLoading }) => {
     setLoading(false);
   }, [setLoading]);
 
-  console.log(topics);
+  const getTopic = (event) => {
+    const topicArticles = [];
+    const topic = event.target.textContent;
+
+    articles.forEach((article) => {
+      if (article.topic === topic) {
+        topicArticles.push(article);
+        return topicArticles;
+      }
+    });
+    //make the component on line 42 and move this function into it
+  };
 
   return (
     <div>
-      <p>THIS IS THE TOPICS COMPONENT</p>
       <ul>
         {topics.map((topic) => (
-          <Link>
+          <Link onClick={getTopic}>
             <li>{topic.slug}</li>
           </Link>
         ))}
       </ul>
+      <ArticlesByTopic />
     </div>
   );
 };

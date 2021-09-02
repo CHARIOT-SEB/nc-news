@@ -45,7 +45,11 @@ function App() {
           <BreakingNews articles={currentArticles} loading={loading} />
         </Route>
         <Route exact path="/topics">
-          <Topics loading={loading} setLoading={setLoading} />
+          <Topics
+            loading={loading}
+            setLoading={setLoading}
+            articles={articles}
+          />
         </Route>
         <Route exact path="/account">
           <Account />

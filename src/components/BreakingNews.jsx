@@ -15,10 +15,6 @@ const BreakingNews = ({ articles, loading }) => {
     return formattedDate;
   };
 
-  const idClicked = () => {
-    // howwww
-  };
-
   return (
     <div>
       <h2>BREAKING NEWS</h2>
@@ -28,7 +24,6 @@ const BreakingNews = ({ articles, loading }) => {
           <Link
             key={article.article_id}
             to={`/article/${article.article_id}`}
-            onClick={idClicked}
           >
             <li>
               {article.title}
