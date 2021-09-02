@@ -52,7 +52,7 @@ function App() {
           />
         </Route>
         <Route exact path="/account">
-          <Account />
+          <Account setLoading={setLoading} />
         </Route>
         <Route exact path="/article/:id">
           <ReadArticle />

@@ -1,7 +1,7 @@
 const Header = () => {
   return (
     <div>
-      <h1>Northcoders News!</h1>
+      <h1>NORTHCODERS NEWS</h1>
     </div>
   );
 };

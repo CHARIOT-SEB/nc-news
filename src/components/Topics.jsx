@@ -5,8 +5,13 @@ const Topics = ({ articles, setLoading }) => {
   const [topics, setTopics] = useState([]);
   const [topic, setTopic] = useState('');
   const [articlesByTopic, setArticlesByTopics] = useState([]);
-  const { slug } = useParams();
 
+  const setTopicFromClick = (event) => {
+    event.preventDefault();
+    setTopic(event.target.innerText);
+  };
+
+  // get topics for topics list
   useEffect(() => {
     setLoading(true);
     fetch('https://northcoders-news.herokuapp.com/api/topics')
@@ -17,29 +22,26 @@ const Topics = ({ articles, setLoading }) => {
     setLoading(false);
   }, [setLoading]);
 
-  const getTopic = (event) => {
-    const topicArticles = [];
-    const topic = event.target.textContent;
-
-    articles.forEach((article) => {
-      if (article.topic === topic) {
-        topicArticles.push(article);
-        return topicArticles;
-      }
-    });
-    //make the component on line 42 and move this function into it
-  };
+  // get articles by topic
+  useEffect(() => {
+    fetch(`https://northcoders-news.herokuapp.com/api/articles?topic=${topic}`)
+      .then((response) => response.json())
+      .then((body) => {
+        setArticlesByTopics(body.articles);
+        console.log(articlesByTopic);
+      });
+  }, [topic, articlesByTopic]);
 
   return (
     <div>
       <ul>
-        {topics.map((topic) => (
-          <Link onClick={getTopic}>
-            <li>{topic.slug}</li>
+        {topics.map((x) => (
+          <Link to={`/topics/${topic}`}>
+            <button className="topicButtons" onClick={setTopicFromClick}>{x.slug}</button>
           </Link>
         ))}
       </ul>
-      <ArticlesByTopic />
+      <ul></ul>
     </div>
   );
 };

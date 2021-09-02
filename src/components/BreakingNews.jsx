@@ -17,15 +17,12 @@ const BreakingNews = ({ articles, loading }) => {
 
   return (
     <div>
-      <h2>BREAKING NEWS</h2>
       <h3>Our most recent stories below...</h3>
+      <h2>BREAKING NEWS</h2>
       <ul>
         {articles.map((article) => (
-          <Link
-            key={article.article_id}
-            to={`/article/${article.article_id}`}
-          >
-            <li>
+          <Link key={article.article_id} to={`/article/${article.article_id}`}>
+            <li classname="recentNews">
               {article.title}
               <br />
               {article.topic}
