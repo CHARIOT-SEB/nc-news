@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import axios from 'axios';
 
 const Topics = ({ articles, setLoading }) => {
   const [topics, setTopics] = useState([]);
@@ -28,20 +29,31 @@ const Topics = ({ articles, setLoading }) => {
       .then((response) => response.json())
       .then((body) => {
         setArticlesByTopics(body.articles);
-        console.log(articlesByTopic);
+        console.log(articlesByTopic)
+      })
+      .catch((err) => {
+        console.log(err);
       });
-  }, [topic, articlesByTopic]);
+  }, [topic]);
 
   return (
     <div>
       <ul>
         {topics.map((x) => (
           <Link to={`/topics/${topic}`}>
-            <button className="topicButtons" onClick={setTopicFromClick}>{x.slug}</button>
+            <button className="topicButtons" onClick={setTopicFromClick}>
+              {x.slug}
+            </button>
           </Link>
         ))}
       </ul>
-      <ul></ul>
+      <ul>
+        {articlesByTopic.map((x) => (
+          <Link key={x.article_id} to={`/article/${x.article_id}`}>
+            <li className="articlesByTopic">{x.title}</li>
+          </Link>
+        ))}
+      </ul>
     </div>
   );
 };
