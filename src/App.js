@@ -9,12 +9,12 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import ReadArticle from './components/ReadArticle';
 
+
 function App() {
   const [searchTerm, setSearchTerm] = useState('');
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [articlesPerPage, setArticlePerPage] = useState(4);
+
 
   useEffect(() => {
     setLoading(true);
@@ -27,13 +27,6 @@ function App() {
       });
   }, []);
 
-  // Get current articles
-  const indexOfLastArticle = currentPage * articlesPerPage;
-  const indexOfFirstArticle = indexOfLastArticle - articlesPerPage;
-  const currentArticles = articles.slice(
-    indexOfFirstArticle,
-    indexOfLastArticle
-  );
 
   return (
     <div className="App">
@@ -42,7 +35,7 @@ function App() {
       <SearchBar setSearchTerm={setSearchTerm} />
       <Switch>
         <Route exact path="/">
-          <BreakingNews articles={currentArticles} loading={loading} />
+          <BreakingNews articles={articles} loading={loading} />
         </Route>
         <Route exact path="/topics">
           <Topics
