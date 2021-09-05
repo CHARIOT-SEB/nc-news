@@ -8,7 +8,7 @@ const SearchBar = ({ searchTerm, setSearchTerm }) => {
     setNewSearchTerm(userInput);
   };
 
-  const handleSubmit = (event) => {
+  const handleClick = (event) => {
     event.preventDefault();
     setSearchTerm(newSearchTerm);
     setNewSearchTerm('');
@@ -18,7 +18,7 @@ const SearchBar = ({ searchTerm, setSearchTerm }) => {
     <div>
       <form>
         <input id="searchBar" type="text" onChange={handleInput} />
-        <button type="submit" value="Search" onSubmit={handleSubmit}>
+        <button type="submit" value="Search" onClick={handleClick}>
           Search
         </button>
       </form>

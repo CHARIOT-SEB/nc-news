@@ -29,7 +29,6 @@ const Topics = ({ articles, setLoading }) => {
       .then((response) => response.json())
       .then((body) => {
         setArticlesByTopics(body.articles);
-        console.log(articlesByTopic)
       })
       .catch((err) => {
         console.log(err);
@@ -38,6 +37,7 @@ const Topics = ({ articles, setLoading }) => {
 
   return (
     <div>
+      <h3>View articles by topic</h3>
       <ul>
         {topics.map((x) => (
           <Link to={`/topics/${topic}`}>

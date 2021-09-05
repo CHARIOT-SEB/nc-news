@@ -8,13 +8,15 @@ import Account from './components/Account';
 import { useState, useEffect } from 'react';
 import './App.css';
 import ReadArticle from './components/ReadArticle';
-
+import ArticleSearcher from './components/ArticleSearcher';
+import { useHistory } from 'react-router-dom';
 
 function App() {
   const [searchTerm, setSearchTerm] = useState('');
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  const history = useHistory();
 
   useEffect(() => {
     setLoading(true);
@@ -26,6 +28,10 @@ function App() {
         setLoading(false);
       });
   }, []);
+
+  useEffect(() => {
+    history.push('/article-results', [searchTerm, articles])
+  }, [searchTerm]);
 
 
   return (
@@ -50,6 +56,7 @@ function App() {
         <Route exact path="/article/:id">
           <ReadArticle />
         </Route>
+        <Route exact path="/article-results" component={ArticleSearcher} />
       </Switch>
     </div>
   );
