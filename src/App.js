@@ -30,8 +30,9 @@ function App() {
   }, []);
 
   useEffect(() => {
-    history.push('/article-results', [searchTerm, articles])
-  }, [searchTerm, articles, history]);
+    console.log('helllo');
+    history.push('/article-results')
+  }, [searchTerm, history]);
 
 
   return (
@@ -56,7 +57,10 @@ function App() {
         <Route exact path="/article/:id">
           <ReadArticle />
         </Route>
-        <Route exact path="/article-results" component={ArticleSearcher} />
+        {/* <Route exact path="/article-results" component={ArticleSearcher} /> */}
+        <Route exact path="/article-results">
+          <ArticleSearcher searchTerm={searchTerm} articles={articles}/>
+        </Route>
       </Switch>
     </div>
   );

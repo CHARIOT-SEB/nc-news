@@ -12,7 +12,7 @@ const ReadArticle = () => {
     axios
       .get(`https://northcoders-news.herokuapp.com/api/articles/${id}`)
       .then((res) => {
-        const a = res.data.article;
+        let a = res.data.article;
         setSingleArticle(a);
       });
   }, [id]);
@@ -21,7 +21,6 @@ const ReadArticle = () => {
     axios.get(`https://northcoders-news.herokuapp.com/api/articles/${id}/comments`)
     .then((res) => {
       setComments(res.data.comments)
-      console.log(comments);
     })
   }, [id])
 

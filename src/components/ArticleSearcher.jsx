@@ -1,19 +1,20 @@
 import { withRouter, Link } from 'react-router-dom';
 
-const ArticleSearcher = (props) => {
+const ArticleSearcher = ({searchTerm, articles}) => {
   const filteredResults = [];
-  const searchWord = props.location.state[0];
-  const allArticles = props.location.state[1];
 
-  allArticles.forEach((article) => {
-    if (article.title.includes(searchWord)) {
+  // const searchWord = props.location.state[0];
+  // const articles = props.location.state[1];
+
+  articles.forEach((article) => {
+    if (article.title.includes(searchTerm)) {
       filteredResults.push(article);
     }
     return filteredResults;
   });
 
   if (filteredResults.length === 0) {
-    return <p>{`No articles found with '${searchWord}' in the title.`}</p>
+    return <p>{`No articles found with '${searchTerm}' in the title.`}</p>
   }
   return (
     <div>
