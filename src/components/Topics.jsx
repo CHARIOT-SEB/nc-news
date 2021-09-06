@@ -49,8 +49,8 @@ const Topics = ({ articles, setLoading }) => {
       </ul>
       <ul>
         {articlesByTopic.map((x) => (
-          <Link key={x.article_id} to={`/article/${x.article_id}`}>
-            <li className="articlesByTopic">{x.title}</li>
+          <Link to={`/article/${x.article_id}`}>
+            <li key={x.article_id} className="articlesByTopic">{x.title}</li>
           </Link>
         ))}
       </ul>
