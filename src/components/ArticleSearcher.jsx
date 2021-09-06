@@ -8,11 +8,13 @@ const ArticleSearcher = (props) => {
   allArticles.forEach((article) => {
     if (article.title.includes(searchWord)) {
       filteredResults.push(article);
-      console.log(filteredResults);
     }
     return filteredResults;
   });
 
+  if (filteredResults.length === 0) {
+    return <p>{`No articles found with '${searchWord}' in the title.`}</p>
+  }
   return (
     <div>
       {filteredResults.map((x) => (

@@ -31,7 +31,7 @@ function App() {
 
   useEffect(() => {
     history.push('/article-results', [searchTerm, articles])
-  }, [searchTerm]);
+  }, [searchTerm, articles, history]);
 
 
   return (

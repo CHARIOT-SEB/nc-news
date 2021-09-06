@@ -39,7 +39,7 @@ const BreakingNews = ({ articles, loading }) => {
               key={article.article_id}
               to={`/article/${article.article_id}`}
             >
-              <li classname="recentNews">
+              <li className="recentNews">
                 {article.title}
                 <br />
                 {article.topic}

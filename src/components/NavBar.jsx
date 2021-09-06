@@ -5,7 +5,8 @@ const NavBar = () => {
     <div>
       <ul className="navbar">
         <NavLink
-          exact to="/"
+          exact
+          to="/"
           activeStyle={{
             fontWeight: 'bold',
             color: 'red',
